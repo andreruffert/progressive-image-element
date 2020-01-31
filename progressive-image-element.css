@@ -1,0 +1,11 @@
+progressive-image {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+progressive-image > img {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}

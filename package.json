@@ -1,0 +1,19 @@
+{
+  "name": "progressive-image-element",
+  "version": "1.0.0",
+  "description": "",
+  "author": "André Ruffert",
+  "license": "MIT",
+  "source": "index.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rm -rf dist",
+    "build": "parcel build index.js",
+    "dev": "parcel examples/index.html",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}

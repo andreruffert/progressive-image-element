@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>progressive-image demo</title>
+
+  <link rel="stylesheet" href="../progressive-image-element.css">
+  <style>
+    /* Additional */
+    progressive-image {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    progressive-image > img {
+      opacity: 0;
+      transition: opacity 400ms ease 0ms;
+    }
+
+    progressive-image > img.loaded {
+       opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <article>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <progressive-image src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+      srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80 1x">
+      <img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50" width="300" height="200" alt="Image">
+    </progressive-image>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </article>
+
+  <script src="../index.js"></script>
+</body>
+</html>
