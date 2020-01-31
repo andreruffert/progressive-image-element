@@ -51,14 +51,14 @@ $ npm install progressive-image-element
   ```
 
 
-  ## Browser support
+## Browser support
 
-  Browsers without native [custom element support][support] require a [polyfill][].
+Browsers without native [custom element support][support] require a [polyfill][].
 
-  [support]: https://caniuse.com/#feat=custom-elementsv1
-  [polyfill]: https://github.com/webcomponents/custom-elements
+[support]: https://caniuse.com/#feat=custom-elementsv1
+[polyfill]: https://github.com/webcomponents/custom-elements
 
 
-  ## License
+## License
 
-  MIT © [André Ruffert](https://andreruffert.com)
+MIT © [André Ruffert](https://andreruffert.com)
