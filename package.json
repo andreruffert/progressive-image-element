@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rm -rf dist",
-    "build": "parcel build index.js",
+    "build": "parcel build index.js progressive-image-element.css",
     "dev": "parcel examples/index.html",
     "prepublishOnly": "npm run build"
   },
