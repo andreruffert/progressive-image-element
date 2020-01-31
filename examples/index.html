@@ -5,8 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>progressive-image demo</title>
 
-  <link rel="stylesheet" href="../progressive-image-element.css">
+  <link rel="stylesheet" href="https://unpkg.com/progressive-image-element@latest/dist/progressive-image-element.css">
+  <!-- <link rel="stylesheet" href="../progressive-image-element.css"> -->
   <style>
+    main {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    main article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
     /* Additional */
     progressive-image {
       background-color: rgba(0, 0, 0, 0.05);
@@ -17,24 +30,51 @@
       transition: opacity 400ms ease 0ms;
     }
 
+    progressive-image > img:first-of-type {
+      filter: blur(100px);
+    }
+
     progressive-image > img.loaded {
-       opacity: 1;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
+  <main>
+    <article>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-  <article>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <progressive-image src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+        srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x">
+        <img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50" width="500" height="333" alt="four person on body of water">
+      </progressive-image>
 
-    <progressive-image src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-      srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80 1x">
-      <img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50" width="300" height="200" alt="Image">
-    </progressive-image>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </article>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </article>
+    <article>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium modi ullam libero nam dolores, quis veritatis inventore molestiae sequi, rem, voluptate similique voluptas a eaque eligendi ex tempore voluptatem doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-  <script src="../index.js"></script>
+      <progressive-image src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+        srcset="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80 1x">
+        <img src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=50&q=50" width="500" height="750" alt="silhouette of trees during golden hour">
+      </progressive-image>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </article>
+
+    <article>
+      <h1>Consectetur adipisicing elit</h1>
+      <progressive-image src="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+        srcset="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x">
+        <img src="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=50" width="500" height="625" alt="clear sky over body of water" >
+      </progressive-image>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </article>
+  </main>
+
+  <script src="https://unpkg.com/progressive-image-element@latest/dist/index.js"></script>
+  <!-- <script src="../index.js"></script> -->
 </body>
 </html>
