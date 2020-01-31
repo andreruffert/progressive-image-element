@@ -49,3 +49,16 @@ $ npm install progressive-image-element
     <img src="placeholder-image.jpg" width="300" height="200" alt="Image" />
   </progressive-image>
   ```
+
+
+  ## Browser support
+
+  Browsers without native [custom element support][support] require a [polyfill][].
+
+  [support]: https://caniuse.com/#feat=custom-elementsv1
+  [polyfill]: https://github.com/webcomponents/custom-elements
+
+
+  ## License
+
+  MIT © [André Ruffert](https://andreruffert.com)
