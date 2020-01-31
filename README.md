@@ -1,6 +1,6 @@
 # &lt;progressive-image&gt; element
 
->
+> A progressive image element
 
 ```html
 <progressive-image
