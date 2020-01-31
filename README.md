@@ -51,6 +51,10 @@ $ npm install progressive-image-element
   ```
 
 
+## Examples
+- [Simple fadeIn transition - CodePen](https://codepen.io/andreruffert/full/mdyZLrQ)
+
+
 ## Browser support
 
 Browsers without native [custom element support][support] require a [polyfill][].
