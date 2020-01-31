@@ -13,6 +13,16 @@
     "dev": "parcel examples/index.html",
     "prepublishOnly": "npm run build"
   },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "progressive image",
+    "lazy loading",
+    "custom elements",
+    "web components",
+    "ui"
+  ],
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
   }
