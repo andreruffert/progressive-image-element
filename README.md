@@ -49,9 +49,11 @@ $ npm install progressive-image-element
     <img src="placeholder-image.jpg" width="300" height="200" alt="Image" />
   </progressive-image>
   ```
+  The placeholder image should be a solid color placeholder, [LQIP](http://www.guypo.com/introducing-lqip-low-quality-image-placeholders) or [SQIP](https://github.com/technopagan/sqip) that hint at the content of the progressive image before it loads.
 
 
 ## Examples
+- [Example page](https://andreruffert.github.io/progressive-image-element/examples)
 - [Simple fadeIn transition - CodePen](https://codepen.io/andreruffert/full/mdyZLrQ)
 
 
