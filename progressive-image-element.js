@@ -4,11 +4,8 @@ class ProgressiveImageElement extends HTMLElement {
     this._placeholderImage = this.querySelector('img');
     this._image = this._placeholderImage?.cloneNode(true) || new Image();
     this._observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.enhancePlaceholderImage(entry.target);
-        }
-      });
+      entries.filter(entry => entry.isIntersecting)
+        .forEach(entry => this.enhancePlaceholderImage(entry.target));
     }, {
       rootMargin: '0px 0px 200px 0px'
     });
@@ -16,9 +13,15 @@ class ProgressiveImageElement extends HTMLElement {
 
   get src() { return this.getAttribute('src'); }
   get srcset() { return this.getAttribute('srcset'); }
+  get savedata() { return this.hasAttribute('savedata'); }
 
   enhancePlaceholderImage() {
-    this._image.onload = e => e.target.classList.add('loaded');
+    this.classList.add('loading');
+    this._image.onload = e => {
+      e.target.classList.add('loaded');
+      this.classList.remove('loadable');
+      this.classList.remove('loading');
+    };
     this._image.src = this.src;
     this._image.srcset = this.srcset;
     this._image.style.position = 'absolute';
@@ -39,8 +42,9 @@ class ProgressiveImageElement extends HTMLElement {
   }
 
   connectedCallback() {
-    if (/\slow-2g|2g|3g/.test(navigator?.connection?.effectiveType)) {
+    if (this.savedata || /\slow-2g|2g|3g/.test(navigator?.connection?.effectiveType)) {
       this.addEventListener('click', this.enhancePlaceholderImage, { once: true });
+      this.classList.add('loadable');
     } else {
       this._observer.observe(this);
     }
@@ -53,15 +57,3 @@ class ProgressiveImageElement extends HTMLElement {
 }
 
 export default ProgressiveImageElement;
-
-
-// TODO:
-// function onConnectionChange() {
-//   const { rtt, downlink, effectiveType,  saveData } = navigator.connection;
-//   console.log(`Effective network connection type: ${effectiveType}`);
-//   console.log(`Downlink Speed/bandwidth estimate: ${downlink}Mb/s`);
-//   console.log(`Round-trip time estimate: ${rtt}ms`);
-//   console.log(`Data-saver mode on/requested: ${saveData}`);
-// }
-//
-// navigator.connection.addEventListener('change', onConnectionChange);

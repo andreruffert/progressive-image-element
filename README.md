@@ -8,6 +8,7 @@
 Progressively enhance image placeholders once they are in the viewport.
 
 * Responsive lazy loading images
+* Save data option
 * No content reflow/layout shifting
 * No dependencies
 
