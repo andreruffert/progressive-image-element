@@ -60,6 +60,7 @@ $ npm install progressive-image-element
 ## Examples
 - [Example page](https://andreruffert.github.io/progressive-image-element/examples)
 - [Simple fadeIn transition - CodePen](https://codepen.io/andreruffert/full/mdyZLrQ)
+- [Save data option with loading state - CodePen](https://codepen.io/andreruffert/full/yLydrdb)
 
 
 ## Browser support
