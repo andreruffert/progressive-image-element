@@ -11,6 +11,14 @@ Progressively enhance [LQIP](http://www.guypo.com/introducing-lqip-low-quality-i
 * No content reflow/layout shifting
 * No dependencies
 
+<div align="center">
+  <br>
+  <br>
+  <img src="example.gif" alt="progressive image element preview example" width="774">
+  <br>
+  <br>
+</div>
+
 
 ## Install
 
