@@ -13,9 +13,7 @@ Progressively enhance image placeholders once they are in the viewport.
 
 <div align="center">
   <br>
-  <br>
   <img src="example-2x.png" alt="progressive image element markup example" width="774">
-  <br>
   <br>
 </div>
 
