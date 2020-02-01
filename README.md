@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/progressive-image-element.svg)](https://www.npmjs.com/package/progressive-image-element)
 ![GitHub file size in bytes](https://img.shields.io/github/size/andreruffert/progressive-image-element/index.js)
 
-Progressively enhance [LQIP](http://www.guypo.com/introducing-lqip-low-quality-image-placeholders) (Low Quality Image Placeholders) once they are in the viewport.
+Progressively enhance image placeholders once they are in the viewport.
 
 * Responsive lazy loading images
 * No content reflow/layout shifting
