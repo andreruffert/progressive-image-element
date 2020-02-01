@@ -39,7 +39,7 @@ class ProgressiveImageElement extends HTMLElement {
   }
 
   connectedCallback() {
-    if (/\slow-2g|2g|3g/.test(navigator.connection.effectiveType)) {
+    if (/\slow-2g|2g|3g/.test(navigator?.connection?.effectiveType)) {
       this.addEventListener('click', this.enhancePlaceholderImage, { once: true });
     } else {
       this._observer.observe(this);
