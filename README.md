@@ -14,7 +14,7 @@ Progressively enhance [LQIP](http://www.guypo.com/introducing-lqip-low-quality-i
 <div align="center">
   <br>
   <br>
-  <img src="example.gif" alt="progressive image element preview example" width="774">
+  <img src="example-2x.png" alt="progressive image element markup example" width="774">
   <br>
   <br>
 </div>
