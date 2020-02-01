@@ -7,7 +7,7 @@
 
 Progressively enhance [LQIP](http://www.guypo.com/introducing-lqip-low-quality-image-placeholders) (Low Quality Image Placeholders) once they are in the viewport.
 
-* Lazy loading images
+* Responsive lazy loading images
 * No content reflow/layout shifting
 * No dependencies
 
