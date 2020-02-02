@@ -8,6 +8,37 @@
   <link rel="stylesheet" href="https://unpkg.com/progressive-image-element@latest/dist/progressive-image-element.css">
   <!-- <link rel="stylesheet" href="../progressive-image-element.css"> -->
   <style>
+    body {
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #343a40;
+      background-color: #fff;
+    }
+    header {
+      max-width: 620px;
+      margin: 100px auto;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      font-weight: 400;
+    }
+
+    pre {
+      background-color: #24292e;
+      border-radius: 5px;
+      color: hsla(0,0%,100%,.7);
+      font-familty: Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0px;
+      overflow: auto;
+      padding: 16px;
+      max-width: 100%;
+    }
+
     main {
       max-width: 620px;
       margin: 0 auto;
@@ -76,14 +107,30 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>&lt;progressive-image&gt; <strong>element</strong></h1>
+  </header>
   <main>
     <article>
+      <h2>With <code>savedata</code> boolean attribute</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-      <progressive-image saveData src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-        srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x">
+      <progressive-image savedata
+        src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+        srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x"
+      >
         <img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50" width="500" height="333" alt="four person on body of water">
       </progressive-image>
+
+      <br>
+<pre>
+&lt;progressive-image savedata
+  src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+  srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x"
+&gt;
+  &lt;img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50" width="500" height="333" alt="four person on body of water" /&gt;
+&lt;/progressive-image&gt;
+</pre>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </article>
@@ -91,8 +138,8 @@
     <article>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium modi ullam libero nam dolores, quis veritatis inventore molestiae sequi, rem, voluptate similique voluptas a eaque eligendi ex tempore voluptatem doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-      <progressive-image src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
-        srcset="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80 1x">
+      <h2>No <code>srcset</code> attribute</h2>
+      <progressive-image src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80">
         <img src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=50&q=50" width="500" height="750" alt="silhouette of trees during golden hour">
       </progressive-image>
 
@@ -100,7 +147,6 @@
     </article>
 
     <article>
-      <h1>Consectetur adipisicing elit</h1>
       <progressive-image src="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
         srcset="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x">
         <img src="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=50" width="500" height="625" alt="clear sky over body of water" >
