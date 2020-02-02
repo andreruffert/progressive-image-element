@@ -7,11 +7,12 @@
   "source": "index.js",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run",
     "prebuild": "rm -rf dist",
     "build": "parcel build index.js progressive-image-element.css",
     "dev": "parcel examples/index.html",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "cypress": "cypress"
   },
   "files": [
     "dist"
@@ -24,6 +25,7 @@
     "ui"
   ],
   "devDependencies": {
+    "cypress": "^3.8.3",
     "parcel-bundler": "^1.12.4"
   }
 }
