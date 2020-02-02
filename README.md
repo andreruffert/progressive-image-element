@@ -57,6 +57,25 @@ $ npm install progressive-image-element
   The placeholder image should be a solid color placeholder, [LQIP](http://www.guypo.com/introducing-lqip-low-quality-image-placeholders) or [SQIP](https://github.com/technopagan/sqip) that hint at the content of the progressive image before it loads.
 
 
+### Styling states
+
+A CSS class `loadable` is present on `<progressive-image>` when the image is ready to load on user interaction (`click`).
+```css
+progressive-image.loadable { ... }
+```
+
+A CSS class `[loading]` is present on `<progressive-image>` while the image is loading.
+```css
+progressive-image.loading { ... }
+```
+
+A CSS class `.loaded` is present on `<img>` children of `<progressive-image>` when the image was loaded.
+```css
+progressive-image > img { opacity: 0; }
+progressive-image > img.loaded { opacity: 1; }
+```
+
+
 ## Examples
 - [Example page](https://andreruffert.github.io/progressive-image-element/examples)
 - [Simple fadeIn transition - CodePen](https://codepen.io/andreruffert/full/mdyZLrQ)
