@@ -16,6 +16,8 @@ class ProgressiveImageElement extends HTMLElement {
   get savedata() { return this.hasAttribute('savedata'); }
 
   enhancePlaceholderImage() {
+    if (!this.src && !this.srcset) return;
+
     this.classList.add('loading');
     this._image.onload = e => {
       e.target.classList.add('loaded');
@@ -23,7 +25,7 @@ class ProgressiveImageElement extends HTMLElement {
       this.classList.remove('loading');
     };
     this._image.src = this.src;
-    this._image.srcset = this.srcset;
+    if (this.srcset) this._image.srcset = this.srcset;
     this._image.style.position = 'absolute';
     this._image.style.top = '0';
     this._image.style.left = '0';
