@@ -4,7 +4,8 @@ progressive-image {
   overflow: hidden;
 }
 
-progressive-image > img {
+progressive-image > img,
+progressive-image > svg {
   display: inline-block;
   max-width: 100%;
   height: auto;
