@@ -1,11 +1,17 @@
+const LAZY_LOADING_SUPPORT = 'loading' in HTMLImageElement.prototype;
+
 class ProgressiveImageElement extends HTMLElement {
   constructor() {
     super();
     this._placeholderImage = this.querySelector('img');
     this._image = this._placeholderImage?.cloneNode(true) || new Image();
+    if (LAZY_LOADING_SUPPORT) return;
+
     this._observer = new IntersectionObserver((entries, observer) => {
-      entries.filter(entry => entry.isIntersecting)
-        .forEach(entry => this.enhancePlaceholderImage(entry.target));
+      entries.filter(entry => entry.isIntersecting).forEach(entry => {
+        this.enhancePlaceholderImage(entry.target);
+        this._observer.unobserve(this);
+      });
     }, {
       rootMargin: '0px 0px 200px 0px'
     });
@@ -18,7 +24,6 @@ class ProgressiveImageElement extends HTMLElement {
 
   enhancePlaceholderImage() {
     if (!this.src && !this.srcset) return;
-
     this.classList.add('loading');
     this._image.onload = e => {
       e.target.classList.add('loaded');
@@ -32,7 +37,6 @@ class ProgressiveImageElement extends HTMLElement {
     this._image.style.position = 'absolute';
     this._image.style.top = '0';
     this._image.style.left = '0';
-    this._observer.unobserve(this);
     this.appendChild(this._image);
 
     // TODO:
@@ -51,7 +55,11 @@ class ProgressiveImageElement extends HTMLElement {
       this.addEventListener('click', this.enhancePlaceholderImage, { once: true });
       this.classList.add('loadable');
     } else {
-      this._observer.observe(this);
+      if (LAZY_LOADING_SUPPORT) {
+        this.enhancePlaceholderImage();
+      } else {
+        this._observer.observe(this);
+      }
     }
     this._placeholderImage?.classList.add('loaded');
   }
