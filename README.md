@@ -3,7 +3,7 @@
 > A progressive image element
 
 [![npm version](https://img.shields.io/npm/v/progressive-image-element.svg)](https://www.npmjs.com/package/progressive-image-element)
-![GitHub file size in bytes](https://img.shields.io/github/size/andreruffert/progressive-image-element/index.js)
+![GitHub file size in bytes](https://img.shields.io/github/size/andreruffert/progressive-image-element/progressive-image-element.js)
 
 Progressively enhance image placeholders once they are in the viewport.
 
