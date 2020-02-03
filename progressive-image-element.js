@@ -24,6 +24,7 @@ class ProgressiveImageElement extends HTMLElement {
       this.classList.remove('loadable');
       this.classList.remove('loading');
     };
+    this._image.loading = 'lazy';
     this._image.src = this.src;
     if (this.srcset) this._image.srcset = this.srcset;
     this._image.style.position = 'absolute';
