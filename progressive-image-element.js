@@ -13,6 +13,7 @@ class ProgressiveImageElement extends HTMLElement {
 
   get src() { return this.getAttribute('src'); }
   get srcset() { return this.getAttribute('srcset'); }
+  get sizes() { return this.getAttribute('sizes'); }
   get savedata() { return this.hasAttribute('savedata'); }
 
   enhancePlaceholderImage() {
@@ -26,6 +27,7 @@ class ProgressiveImageElement extends HTMLElement {
     };
     this._image.src = this.src;
     if (this.srcset) this._image.srcset = this.srcset;
+    if (this.sizes) this._image.sizes = this.sizes;
     this._image.style.position = 'absolute';
     this._image.style.top = '0';
     this._image.style.left = '0';
