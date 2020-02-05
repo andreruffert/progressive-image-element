@@ -8,7 +8,7 @@ class ProgressiveImageElement extends HTMLElement {
     const width = placeholderElement?.getAttribute('width');
     const height = placeholderElement?.getAttribute('height');
     if (!placeholderElement) console.warn(MESSAGES.placeholderElement.missing);
-    if (!width && !height) console.warn(MESSAGES.dimensions.missing);
+    if (placeholderElement && (!width && !height)) console.warn(MESSAGES.dimensions.missing);
     this._placeholderImage = placeholderElement?.tagName === 'IMG' ? placeholderElement : null;
     this._image = this._placeholderImage?.cloneNode(true) || new Image();
     if (LAZY_LOADING_SUPPORT) return;
