@@ -86,6 +86,7 @@ progressive-image > img.loaded { opacity: 1; }
 - [Example page](https://andreruffert.github.io/progressive-image-element/examples)
 - [Simple fadeIn transition - CodePen](https://codepen.io/andreruffert/full/mdyZLrQ)
 - [Save data option with loading state - CodePen](https://codepen.io/andreruffert/full/yLydrdb)
+- [React Component - CodePen](https://codepen.io/andreruffert/full/KKpKVRO)
 
 
 ## Browser support
