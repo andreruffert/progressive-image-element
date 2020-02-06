@@ -11,6 +11,7 @@ Progressively enhance image placeholders once they are in the viewport.
 * Save data option
 * No content reflow/layout shifting
 * No dependencies
+* Framework agnostic
 
 <div align="center">
   <img src="example-2x.png" alt="progressive image element markup example" width="774">
@@ -60,6 +61,7 @@ $ npm install progressive-image-element
 
 - `src` Specifies the image to display
 - `srcset` One or more [image candidate strings](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset)
+- `sizes` Comma-separated list of [source size descriptors](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes)
 - `savedata` Boolean attribute to load the images only after a click/tap on the placeholder image
 
 ### Styling states
