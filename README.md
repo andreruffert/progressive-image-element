@@ -94,7 +94,7 @@ progressive-image > img.loaded { opacity: 1; }
 Browsers without native [custom element support][support] require a [polyfill][].
 
 [support]: https://caniuse.com/#feat=custom-elementsv1
-[polyfill]: https://github.com/webcomponents/custom-elements
+[polyfill]: https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements
 
 
 ## License
