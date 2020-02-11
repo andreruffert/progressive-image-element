@@ -57,12 +57,14 @@ $ npm install progressive-image-element
   ```
   The placeholder image should be a solid color placeholder, [LQIP](http://www.guypo.com/introducing-lqip-low-quality-image-placeholders) or [SQIP](https://github.com/technopagan/sqip) that hint at the content of the progressive image before it loads.
 
+
 ## Attributes
 
 - `src` Specifies the image to display
 - `srcset` One or more [image candidate strings](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset)
 - `sizes` Comma-separated list of [source size descriptors](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes)
 - `savedata` Boolean attribute to load the images only after a click/tap on the placeholder image
+
 
 ## Styling states
 
