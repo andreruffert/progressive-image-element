@@ -63,7 +63,8 @@ $ npm install progressive-image-element
 - `src` Specifies the image to display
 - `srcset` One or more [image candidate strings](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset)
 - `sizes` Comma-separated list of [source size descriptors](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes)
-- `savedata` Boolean attribute to load the images only after a click/tap on the placeholder image
+- `savedata` Boolean attribute to load the images only after a click/tap on the placeholder image.   
+  By default enabled for slow connections (`slow-2g|2g|3g`).
 
 
 ## Styling states
