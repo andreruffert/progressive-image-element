@@ -1,5 +1,6 @@
 import { MESSAGES } from './constants';
 const LAZY_LOADING_SUPPORT = 'loading' in HTMLImageElement.prototype;
+const SLOW_CONNECTIONS = /\slow-2g|2g|3g/;
 
 class ProgressiveImageElement extends HTMLElement {
   constructor() {
@@ -26,7 +27,11 @@ class ProgressiveImageElement extends HTMLElement {
   get src() { return this.getAttribute('src'); }
   get srcset() { return this.getAttribute('srcset'); }
   get sizes() { return this.getAttribute('sizes'); }
-  get savedata() { return this.hasAttribute('savedata'); }
+
+  get savedata() {
+    const effectiveType = navigator?.connection?.effectiveType;
+    return this.hasAttribute('savedata') || SLOW_CONNECTIONS.test(effectiveType);
+  }
 
   enhancePlaceholderImage() {
     if (!this.src && !this.srcset) return;
@@ -57,7 +62,7 @@ class ProgressiveImageElement extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.savedata || /\slow-2g|2g|3g/.test(navigator?.connection?.effectiveType)) {
+    if (this.savedata) {
       this.addEventListener('click', this.enhancePlaceholderImage, { once: true });
       this.classList.add('loadable');
     } else {
