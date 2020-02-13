@@ -12,7 +12,8 @@
     "build": "parcel build index.js progressive-image-element.css",
     "dev": "parcel examples/index.html",
     "prepublishOnly": "npm run build",
-    "cypress": "cypress"
+    "cypress": "cypress",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "files": [
     "dist"
