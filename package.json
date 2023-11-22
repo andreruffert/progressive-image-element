@@ -32,7 +32,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@cypress/browserify-preprocessor": "^3.0.0",
     "conventional-changelog-cli": "^2.0.31",
-    "cypress": "^9.5.1",
+    "cypress": "^13.6.0",
     "parcel-bundler": "^1.12.4"
   }
 }
