@@ -16,6 +16,7 @@ class ProgressiveImageElement extends HTMLElement {
 
     this._observer = new IntersectionObserver(
       (entries, observer) => {
+        // biome-ignore lint/complexity/noForEach:
         entries
           .filter((entry) => entry.isIntersecting)
           .forEach((entry) => {
