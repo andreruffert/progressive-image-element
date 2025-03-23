@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A progressive image element - Progressively enhance image placeholders once they are in the viewport.">
+  <title>progressive-image custom element demo</title>
+
+  <link rel="stylesheet" href="/src/progressive-image-element.css">
+  <style>
+    body {
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #343a40;
+      background-color: #fff;
+      word-wrap: break-word;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    pre {
+      background-color: #24292e;
+      border-radius: 5px;
+      color: hsla(0,0%,100%,.7);
+      font-familty: Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0px;
+      overflow: auto;
+      padding: 16px;
+      max-width: 100%;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    main article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    progressive-image {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    progressive-image.loadable:before,
+    progressive-image.loading:before {
+      content: "";
+      cursor: pointer;
+      display: block;
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    progressive-image.loadable:before {
+      right: 0;
+      bottom: 0;
+      background-repeat: no-repeat;
+      background-position: 16px 16px;
+      background-size: 24px;
+      background-image: url('data:image/svg+xml,\<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">\<path d="M0 0h24v24H0z" fill="none"/>\<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>\</svg>');
+    }
+
+    progressive-image.loading:before {
+      background-color: #000;
+      animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      height: 3px;
+      width: 100%;
+    }
+
+    @keyframes running-progress {
+      0% { margin-left: 0px; margin-right: 100%; }
+      50% { margin-left: 25%; margin-right: 0%; }
+      100% { margin-left: 100%; margin-right: 0; }
+    }
+
+    progressive-image > img {
+      opacity: 0;
+      transition: opacity 400ms ease 0ms;
+    }
+
+    progressive-image > img[alt]:first-of-type {
+      filter: blur(100px);
+    }
+
+    progressive-image > img.loaded {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <article>
+      <h2>With <code>savedata</code> boolean attribute</h2>
+      <progressive-image savedata
+        src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+        srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x"
+      >
+        <img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50" width="500" height="333" alt="four person on body of water">
+      </progressive-image>
+    </article>
+
+    <article>
+      <h1>SVG placeholder</h1>
+      <progressive-image savedata src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=869&q=80">
+        <svg xmlns="http://www.w3.org/2000/svg" width="434" height="289"></svg>
+      </progressive-image>
+    </article>
+
+    <article>
+      <h1>No <code>srcset</code> attribute</h1>
+      <progressive-image src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80">
+        <img src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=50&q=50" width="500" height="750" alt="silhouette of trees during golden hour">
+      </progressive-image>
+    </article>
+
+    <article>
+      <h1>Default</h1>
+      <progressive-image src="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+        srcset="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x">
+        <img src="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=50" width="500" height="625" alt="clear sky over body of water" >
+      </progressive-image>
+    </article>
+  </main>
+
+  <script type="module" src="/src/index.js"></script>
+</body>
+</html>

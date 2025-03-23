@@ -9,24 +9,35 @@ class ProgressiveImageElement extends HTMLElement {
     const width = placeholderElement?.getAttribute('width');
     const height = placeholderElement?.getAttribute('height');
     if (!placeholderElement) console.warn(MESSAGES.placeholderElement.missing);
-    if (placeholderElement && (!width && !height)) console.warn(MESSAGES.dimensions.missing);
+    if (placeholderElement && !width && !height) console.warn(MESSAGES.dimensions.missing);
     this._placeholderImage = placeholderElement?.tagName === 'IMG' ? placeholderElement : null;
     this._image = this._placeholderImage?.cloneNode(true) || new Image();
     if (LAZY_LOADING_SUPPORT) return;
 
-    this._observer = new IntersectionObserver((entries, observer) => {
-      entries.filter(entry => entry.isIntersecting).forEach(entry => {
-        this.enhancePlaceholderImage(entry.target);
-        this._observer.unobserve(this);
-      });
-    }, {
-      rootMargin: '0px 0px 200px 0px'
-    });
+    this._observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .forEach((entry) => {
+            this.enhancePlaceholderImage(entry.target);
+            this._observer.unobserve(this);
+          });
+      },
+      {
+        rootMargin: '0px 0px 200px 0px',
+      },
+    );
   }
 
-  get src() { return this.getAttribute('src'); }
-  get srcset() { return this.getAttribute('srcset'); }
-  get sizes() { return this.getAttribute('sizes'); }
+  get src() {
+    return this.getAttribute('src');
+  }
+  get srcset() {
+    return this.getAttribute('srcset');
+  }
+  get sizes() {
+    return this.getAttribute('sizes');
+  }
 
   get savedata() {
     const effectiveType = navigator?.connection?.effectiveType;
@@ -36,7 +47,7 @@ class ProgressiveImageElement extends HTMLElement {
   enhancePlaceholderImage() {
     if (!this.src && !this.srcset) return;
     this.classList.add('loading');
-    this._image.onload = e => {
+    this._image.onload = (e) => {
       e.target.classList.add('loaded');
       this.classList.remove('loadable');
       this.classList.remove('loading');

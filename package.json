@@ -2,37 +2,48 @@
   "name": "progressive-image-element",
   "version": "1.2.0",
   "description": "A progressive image element",
-  "author": "André Ruffert",
   "license": "MIT",
-  "repository": "andreruffert/progressive-image-element",
-  "source": "index.js",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "cypress run",
-    "prebuild": "rm -rf dist",
-    "build": "parcel build index.js progressive-image-element.css",
-    "dev": "parcel examples/index.html",
-    "prepublishOnly": "npm run build",
-    "cypress": "cypress",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+  "funding": "https://github.com/andreruffert/progressive-image-element?sponsor=1",
+  "homepage": "https://andreruffert.github.io/progressive-image-element/",
+  "author": {
+    "name": "André Ruffert",
+    "url": "https://andreruffert.com"
   },
+  "source": "index.js",
+  "main": "dist/progressive-image-element.umd.js",
   "files": [
     "dist"
   ],
-  "keywords": [
-    "progressive image",
-    "lazy loading",
-    "javascript",
-    "custom elements",
-    "web components",
-    "react",
-    "ui"
-  ],
+  "scripts": {
+    "dev": "vite",
+    "dev:docs": "vite --config vite.docs.config.js",
+    "build": "vite build",
+    "format": "biome check --write",
+    "lint": "biome ci",
+    "prepublishOnly": "npm run build",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+  },
   "devDependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
-    "@cypress/browserify-preprocessor": "^3.0.0",
-    "conventional-changelog-cli": "^2.0.31",
-    "cypress": "^9.5.1",
-    "parcel-bundler": "^1.12.4"
-  }
+    "@biomejs/biome": "1.9.4",
+    "conventional-changelog-cli": "5.0.0",
+    "vite": "6.2.2"
+  },
+  "volta": {
+    "node": "22.13.1",
+    "npm": "11.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreruffert/progressive-image-element.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andreruffert/progressive-image-element/issues"
+  },
+  "keywords": [
+    "progressive",
+    "image",
+    "custom element",
+    "web components",
+    "ui"
+  ]
 }
