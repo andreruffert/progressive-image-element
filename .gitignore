@@ -1,6 +1,4 @@
 node_modules
 \__*
 *.log
-.env
-.cache
 dist

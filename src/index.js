@@ -1,6 +1,7 @@
-import ProgressiveImageElement from './progressive-image-element';
+import './style.css';
 import { ELEMENT_NAME } from './constants';
-export { ProgressiveImageElement as default }
+import ProgressiveImageElement from './progressive-image-element';
+export { ProgressiveImageElement as default };
 
 if (!window.customElements.get(ELEMENT_NAME)) {
   window.ProgressiveImageElement = ProgressiveImageElement;
