@@ -2,7 +2,7 @@
 
 > A progressive image element
 
-[![CI status](https://github.com/andreruffert/progressive-image-element/workflows/CI/badge.svg)](https://github.com/andreruffert/progressive-image-element/actions?workflow=CI)
+[![Test](https://github.com/andreruffert/progressive-image-element/actions/workflows/test.yml/badge.svg)](https://github.com/andreruffert/progressive-image-element/actions/workflows/test.yml)
 [![npm version](https://img.shields.io/npm/v/progressive-image-element.svg)](https://www.npmjs.com/package/progressive-image-element)
 [![npm downloads](https://img.shields.io/npm/dm/progressive-image-element?logo=npm)](https://www.npmjs.com/package/progressive-image-element)
 
