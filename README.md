@@ -8,11 +8,10 @@
 
 Progressively enhance image placeholders once they are in the viewport.
 
-* Responsive lazy loading images
-* Save data option
-* No content reflow/layout shifting
-* No dependencies
-* Framework agnostic
+* Faster page load: Images are loaded only as they enter the viewport, using native browser lazy loading with placeholders
+* Visual stability: Prevent layout shifts when loading images
+* Save data option: Load images only on demand
+* No dependencies: Framework agnostic web component
 
 <div align="center">
   <img src="example-2x.png" alt="progressive image element markup example" width="774">
@@ -88,21 +87,8 @@ progressive-image > img.loaded { opacity: 1; }
 ```
 
 
-## Examples
-- [Example page](https://andreruffert.github.io/progressive-image-element/examples)
-- [Simple fadeIn transition - CodePen](https://codepen.io/andreruffert/full/mdyZLrQ)
-- [Save data option with loading state - CodePen](https://codepen.io/andreruffert/full/yLydrdb)
-- [React Component - CodePen](https://codepen.io/andreruffert/full/KKpKVRO)
-
-
-## Browser support
-
-Browsers without native [custom element support][support] require a [polyfill][].
-
-[support]: https://caniuse.com/#feat=custom-elementsv1
-[polyfill]: https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements
-
-
 ## License
 
-MIT © [André Ruffert](https://andreruffert.com)
+Distributed under the MIT license. See LICENSE for details. 
+
+© [André Ruffert](https://andreruffert.com)
