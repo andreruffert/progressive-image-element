@@ -9,8 +9,16 @@
     "name": "André Ruffert",
     "url": "https://andreruffert.com"
   },
-  "source": "index.js",
-  "main": "dist/progressive-image-element.umd.js",
+  "type": "module",
+  "module": "dist/progressive-image-element.js",
+  "main": "dist/progressive-image-element.umd.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/progressive-image-element.js",
+      "require": "./dist/progressive-image-element.umd.cjs"
+    },
+    "./style.css": "./dist/progressive-image-element.css"
+  },
   "files": [
     "dist"
   ],
