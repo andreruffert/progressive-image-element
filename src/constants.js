@@ -1,4 +1,4 @@
-export const ELEMENT_NAME = 'progressive-image';
+export const DEFAULT_TAG_NAME = 'progressive-image';
 export const MESSAGES = {
   placeholderElement: {
     missing:
