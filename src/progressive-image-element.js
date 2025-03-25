@@ -1,8 +1,16 @@
-import { MESSAGES } from './constants';
+import { DEFAULT_TAG_NAME, MESSAGES } from './constants';
+
 const LAZY_LOADING_SUPPORT = 'loading' in HTMLImageElement.prototype;
 const SLOW_CONNECTIONS = /\slow-2g|2g|3g/;
 
 class ProgressiveImageElement extends HTMLElement {
+  static define(tagName = DEFAULT_TAG_NAME, registry = customElements) {
+    if (!registry.get(tagName)) {
+      registry.define(tagName, ProgressiveImageElement);
+      return ProgressiveImageElement;
+    }
+  }
+
   constructor() {
     super();
     const placeholderElement = this.querySelector('img, svg');
