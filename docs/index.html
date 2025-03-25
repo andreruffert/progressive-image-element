@@ -2,206 +2,263 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <title>&lt;progressive-image&gt; element - Web Component</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="André Ruffert">
   <meta name="description" content="A progressive image element - Progressively enhance image placeholders once they are in the viewport.">
-  <title>progressive-image custom element demo</title>
 
+  <meta name="og:title" content="&lt;progressive-image&gt; element - Web Component">
+  <meta name="og:type" content="website">
+  <meta name="og:url" content="https://andreruffert.github.io/progressive-image-element/">
+  <meta property="og:image" content="https://repository-images.githubusercontent.com/237288524/52090380-44a0-11ea-8496-15717489ce21">
+  <meta property="og:image:alt" content="⚡️ Progressively enhance image placeholders once they are in the viewport - andreruffert/progressive-image-element">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡️</text></svg>">
+
+  <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://unpkg.com/progressive-image-element@latest/dist/progressive-image-element.css">
-  <style>
-    body {
-      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
-      font-size: 14px;
-      line-height: 1.5;
-      color: #343a40;
-      background-color: #fff;
-      word-wrap: break-word;
-    }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    header {
-      max-width: 620px;
-      margin: 80px auto;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 2.4rem;
-      font-weight: 400;
-    }
-
-    pre {
-      background-color: #24292e;
-      border-radius: 5px;
-      color: hsla(0,0%,100%,.7);
-      font-familty: Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;
-      font-size: 13px;
-      line-height: 1.5;
-      margin: 0px;
-      overflow: auto;
-      padding: 16px;
-      max-width: 100%;
-    }
-
-    main {
-      max-width: 620px;
-      margin: 0 auto;
-    }
-
-    main article {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    footer {
-      max-width: 620px;
-      margin: 50px auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    footer a {
-      color: inherit;
-    }
-
-    progressive-image {
-      background-color: rgba(0, 0, 0, 0.05);
-    }
-
-    progressive-image.loadable:before,
-    progressive-image.loading:before {
-      content: "";
-      cursor: pointer;
-      display: block;
-      z-index: 1;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    progressive-image.loadable:before {
-      right: 0;
-      bottom: 0;
-      background-repeat: no-repeat;
-      background-position: 16px 16px;
-      background-size: 24px;
-      background-image: url('data:image/svg+xml,\<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">\<path d="M0 0h24v24H0z" fill="none"/>\<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>\</svg>');
-    }
-
-    progressive-image.loading:before {
-      background-color: #000;
-      animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-      height: 3px;
-      width: 100%;
-    }
-
-    @keyframes running-progress {
-      0% { margin-left: 0px; margin-right: 100%; }
-      50% { margin-left: 25%; margin-right: 0%; }
-      100% { margin-left: 100%; margin-right: 0; }
-    }
-
-    progressive-image > img {
-      opacity: 0;
-      transition: opacity 400ms ease 0ms;
-    }
-
-    progressive-image > img[alt]:first-of-type {
-      filter: blur(100px);
-    }
-
-    progressive-image > img.loaded {
-      opacity: 1;
-    }
-  </style>
+  <script>
+    // Ensure the event listener is setup before the initial `color-scheme-switch` event gets fired.
+    document.addEventListener('color-scheme-switch', event => {
+      const colorScheme = event.target.value;
+      document.documentElement.style.setProperty('color-scheme', colorScheme);
+      event.target.querySelector('[data-icon] use').setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", colorScheme === 'light' ? '#icon-sun' : '#icon-moon');
+      event.target.setAttribute('aria-label', `Switch to ${colorScheme === 'light' ? 'dark' : 'light'} color scheme`)
+    });
+  </script>
+  <script type="module" async blocking="render" src="https://unpkg.com/color-scheme-switch-element@1.0.0/dist/color-scheme-switch-element.js"></script>
 </head>
 <body>
   <header>
-    <h1>&lt;progressive-image&gt; <strong>element</strong></h1>
-    <p>Progressively enhance image placeholders once they are in the viewport.</p>
+    <div class="header-links">
+      <a href="https://andreruffert.com" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>Made by André Ruffert</a>
+      <a href="https://github.com/andreruffert/progressive-image-element" target="_blank" rel="noreferrer">Source on GitHub <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+    </div>
+    <color-scheme-switch class="button" title="Toggle light & dark color scheme">
+      <svg width="1.2em" height="1.2em" aria-hidden="true" data-icon><use xlink:href="#icon-sun"></use></svg>
+    </color-scheme-switch>
   </header>
   <main>
-    <article>
-      <h2>With <code>savedata</code> boolean attribute</h2>
-
-      <progressive-image savedata
-        src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-        srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x"
-      >
-        <img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50" width="500" height="333" alt="four person on body of water">
-      </progressive-image>
-
-      <p>
-        <small>Placeholder image size <b>3.5 kB</b></small> · <small>Actual image size 2x <b>57.2 kB</b></small>
+    <section data-section="intro">
+      <span class="emoji" aria-hidden="true">⚡️</span>
+      <span class="heading">&lt;progressive-image&gt;</span>
+      <h1 class="tagline">A simple web component to progressively enhance image placeholders once they are in the viewport.</h1>
+      <p class="badges">
+        <a href="https://www.npmjs.com/package/progressive-image-element" target="_blank" rel="noreferrer">
+          <img src="https://img.shields.io/npm/v/progressive-image-element?color=ffc300&labelColor=212121" width="80" height="20" alt="npm version" />
+        </a>
+        <a href="https://pkg-size.dev/progressive-image-element" target="_blank" rel="noreferrer">
+          <img src="https://img.shields.io/badge/gzip-2.6kB-ffc300?labelColor=212121" height="20" alt="gzip size">
+        </a>
+        <a href="https://www.npmjs.com/package/progressive-image-element" target="_blank" rel="noreferrer">
+          <img src="https://img.shields.io/npm/dm/progressive-image-element?color=ffc300&labelColor=212121" height="20" alt="npm downloads">
+        </a>
+        <a href="https://github.com/andreruffert/progressive-image-element"><img src="https://img.shields.io/badge/source-a?logo=github&color=212121" width="65" height="20" alt="GitHub"></a>
       </p>
-
-      <br>
-<pre>
-&lt;progressive-image savedata
-  src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-  srcset="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x"
-&gt;
-  &lt;img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50" width="500" height="333" alt="four person on body of water" /&gt;
-&lt;/progressive-image&gt;
-</pre>
-
-      <div>
-        <figure>
-          <img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=30&q=50">
-          <figcaption>Placaholder image 30x20</figcaption>
-        </figure>
-
-        <figure>
-          <img src="https://images.unsplash.com/photo-1508162252424-e8ad5ef02539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" width="250">
-          <figcaption>Actual image 1x 500x333</figcaption>
-        </figure>
+      <div class="copy-code-container">
+        <div class="copy-code">
+          <syntax-highlight id="copy-npm-install">npm i progressive-image-element</syntax-highlight>
+          <clipboard-copy for="copy-npm-install" class="button" aria-label="Copy content">
+            <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+          </clipboard-copy>
+        </div>
       </div>
+    </section>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </article>
+    <section data-section="example">
+      <h1>Example</h1>
+      <figure>
+        <progressive-image savedata
+          src="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=510&h=340&q=80"
+          srcset="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=1020&h=680&q=80 2x, https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=510&h=340&q=80 1x"
+        >
+          <img src="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=30&h=20&q=50" width="510" height="340" alt="">
+        </progressive-image>
+        <figcaption>Example using the <code><a href="#attributes">savedata</a></code> attribute to load images on demand.</figcaption>
+      </figure>
+      <div class="copy-code">
+<syntax-highlight language="html" id="copy-usage-html">&lt;progressive-image
+  savedata
+  src="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=510&h=340&q=80"
+  srcset="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=1020&h=680&q=80 2x, https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=510&h=340&q=80 1x"
+&gt;
+  &lt;img src="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=30&h=20&q=50" width="510" height="340" alt="" /&gt;
+&lt;/progressive-image&gt;
+</syntax-highlight>
+        <clipboard-copy for="copy-usage-html" class="button" aria-label="Copy content">
+          <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+        </clipboard-copy>
+      </div>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=30&h=20&q=50" width="30" height="20" alt="">
+        <figcaption>Placeholder image size <code>30x20</code></figcaption>
+      </figure>
+      <figure>
+        <progressive-image
+          src="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=510&h=340&q=80"
+          srcset="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=510&h=340&q=80 2x, https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=255&h=170&q=80 1x"
+        >
+          <img src="https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?auto=format&fit=crop&w=30&h=20&q=50" width="255" height="170" alt="">
+        </progressive-image>
+        <figcaption>Actual image size <code>1020x680</code> <code>(@2x)</code></figcaption>
+      </figure>
+  </section>
 
-    <article>
-      <h1>SVG placeholder</h1>
-      <progressive-image savedata src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=869&q=80">
-        <svg xmlns="http://www.w3.org/2000/svg" width="434" height="289"></svg>
-      </progressive-image>
-    </article>
+    <section data-section="content">
+      <h1>Features</h1>
+      <p>According to <a href="https://almanac.httparchive.org/" target="_blank" rel="noreferrer nofollow">Web Almanac</a>, images account for a large portion of the <a href="https://almanac.httparchive.org/en/2022/page-weight#content-type-and-file-formats" target="_blank" rel="noreferrer nofollow">page weight</a> of a typical website and can have a significant impact on your site's <a href="https://almanac.httparchive.org/en/2022/performance#lcp-image-optimization" target="_blank" rel="noreferrer">LCP performance</a>.</p>
+      <p>The <code>&lt;progressive-image&gt;</code> element extends the HTML <code>&lt;img&gt;</code> element with features to improve the initial page weight:</p>
+      <ul>
+        <li><b>Faster page load</b>: Images are loaded only as they enter the viewport, using native browser lazy loading with placeholders
+        <li><b>Visual stability</b>: Prevent layout shifts when loading images
+        <li><b>Save data option</b>: Load images only on demand
+        <li><b>No dependencies</b>: Framework agnostic <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components" target="_blank" rel="noreferrer nofollow">web component</a>
+      </ul>
+    </section>
 
-    <article>
-      <h1>Scroll down to load more images</h1>
+    <section data-section="content">
+      <h1>Install</h1>
+      <p>Install via npm</p>
+      <div class="copy-code">
+        <syntax-highlight id="copy-install-npm">npm i progressive-image-element</syntax-highlight>
+        <clipboard-copy for="copy-install-npm" class="button" aria-label="Copy content">
+          <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+        </clipboard-copy>
+      </div>
+    </section>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <section data-section="content">
+      <h1>Usage</h1>
+      <p>1. Include the script & stylesheet within your application</p>
+      <div class="copy-code">
+        <syntax-highlight language="html" id="copy-usage-cdn">&lt;!-- Include the stylesheet, this could be direct from the package or CDN --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/progressive-image-element@latest/dist/progressive-image-element.css" /&gt;
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium modi ullam libero nam dolores, quis veritatis inventore molestiae sequi, rem, voluptate similique voluptas a eaque eligendi ex tempore voluptatem doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+&lt;!-- Include the custom element script, this could be direct from the package or CDN --&gt;
+&lt;script src="https://unpkg.com/progressive-image-element@latest/dist/index.js"&gt;&lt;/script&gt;</syntax-highlight>
+        <clipboard-copy for="copy-usage-cdn" class="button" aria-label="Copy content">
+          <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+        </clipboard-copy>
+      </div>
+      <p>or</p>
+      <div class="copy-code">
+        <syntax-highlight language="js" id="copy-usage-import">// Import the custom element script
+import ProgressiveImageElement from 'progressive-image-element';</syntax-highlight>
+        <clipboard-copy for="copy-usage-import" class="button" aria-label="Copy content">
+          <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+        </clipboard-copy>
+      </div>
+      <p>2. Use the &lt;progressive-image&gt; element markup</p>
+      <div class="copy-code">
+        <syntax-highlight language="html" id="copy-usage-markup">&lt;progressive-image
+  src="example-image-1x.jpg"
+  srcset="example-image-2x.jpg 2x, example-image-1x.jpg 1x"
+&gt;
+  &lt;!-- Make sure to specify image dimensions --&gt;
+  &lt;img src="placeholder-image.jpg" width="300" height="200" alt="Image" /&gt;
+&lt;/progressive-image&gt;</syntax-highlight>
+        <clipboard-copy for="copy-usage-markup" class="button" aria-label="Copy content">
+          <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+        </clipboard-copy>
+      </div>
+      <p>Use a solid color, <a href="http://www.guypo.com/introducing-lqip-low-quality-image-placeholders" target="_blank" rel="noreferrer nofollow">LQIP</a>, or <a href="https://github.com/technopagan/sqip" target="_blank" rel="noreferrer">SQIP</a> image placeholder. This will hint at the content of the progressive image before it loads.</p>
+    </section>
 
-      <h2>No <code>srcset</code> attribute</h2>
+    <section data-section="content">
+      <a id="attributes"></a>
+      <h1>Attributes</h1>
+      <ul>
+        <li><code>src</code> Specifies the image to display
+        <li><code>srcset</code> One or more <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset" target="_blank" rel="noreferrer nofollow">image candidate strings</a>
+        <li><code>sizes</code> Comma-separated list of <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes" target="_blank" rel="noreferrer nofollow">source size descriptors</a>
+        <li><code>savedata</code> Boolean attribute to load the images only after a click/tap on the placeholder image.<br>
+        By default enabled for slow connections (<code>slow-2g|2g|3g</code>).</li>
+        </ul>
+    </section>
 
-      <progressive-image src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80">
-        <img src="https://images.unsplash.com/photo-1507506892840-60a3825a6161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=50&q=50" width="500" height="750" alt="silhouette of trees during golden hour">
-      </progressive-image>
+    <section data-section="content">
+      <h1>Styling states</h1>
+      <p>A CSS class <code>loadable</code> is present on the <code>&lt;progressive-image&gt;</code> element when the image is ready to load on user interaction (<code>click</code>).
+        Used for slow connections or when the <code>savedata</code> attribute is present.</p>
+      <div class="copy-code" id="copy-style-loadable">
+        <syntax-highlight language="css">progressive-image.loadable { … }</syntax-highlight>
+        <clipboard-copy for="copy-style-loadable" class="button" aria-label="Copy content">
+          <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+        </clipboard-copy>
+      </div>
+      <p>A CSS class <code>loading</code> is present on the <code>&lt;progressive-image&gt;</code> element while the image is loading.</p>
+      <div class="copy-code" id="copy-style-loading">
+        <syntax-highlight language="css">progressive-image.loading { … }</syntax-highlight>
+        <clipboard-copy for="copy-style-loading" class="button" aria-label="Copy content">
+          <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+        </clipboard-copy>
+      </div>
+      <p>A CSS class <code>loaded</code> is present on the <code>&lt;img&gt;</code> children of the <code>&lt;progressive-image&gt;</code> element when the image was loaded.</p>
+      <div class="copy-code" id="copy-style-loaded">
+        <syntax-highlight language="css">progressive-image > img { opacity: 0; }
+progressive-image > img.loaded { opacity: 1; }</syntax-highlight>
+        <clipboard-copy for="copy-style-loaded" class="button" aria-label="Copy content">
+          <svg width="1em" height="1em" aria-hidden="true" data-icon><use xlink:href="#icon-copy"></use></svg>
+        </clipboard-copy>
+      </div>
+    </section>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </article>
-
-    <article>
-      <progressive-image src="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-        srcset="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80 2x, https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80 1x">
-        <img src="https://images.unsplash.com/photo-1522092787785-60123fde65c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=50" width="500" height="625" alt="clear sky over body of water" >
-      </progressive-image>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </article>
+    <section data-section="content">
+      <h1>Examples</h1>
+      <p>For more examples checkout the CodePen <a href="https://codepen.io/collection/XqVzvP" target="_blank" rel="noreferrer nofollow">&lt;progressive-image&gt; element collection</a>.</p>
+    </section>
   </main>
 
   <footer>
-    <a href="https://github.com/andreruffert/progressive-image-element">GitHub</a>
-    <a href="https://www.npmjs.com/package/progressive-image-element">npm</a>
+    <p>An <a href="https://github.com/andreruffert" target="_blank">open source</a> project by <a href="https://andreruffert.com" target="_blank">André Ruffert</a> ©.</p>
+    <p>Released under the MIT License.</p>
   </footer>
+
+  <svg width="0" height="0" aria-hidden="true" hidden>
+    <symbol id="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2"></path>
+      <path d="M12 20v2"></path>
+      <path d="m4.93 4.93 1.41 1.41"></path>
+      <path d="m17.66 17.66 1.41 1.41"></path>
+      <path d="M2 12h2"></path>
+      <path d="M20 12h2"></path>
+      <path d="m6.34 17.66-1.41 1.41"></path>
+      <path d="m19.07 4.93-1.41 1.41"></path>
+    </symbol>
+    <symbol id="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+    </symbol>
+    <symbol id="icon-copy" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+    </symbol>
+    <symbol id="icon-check" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <path d="M20 6 9 17l-5-5"/>
+    </symbol>
+  </svg>
+
   <script src="https://unpkg.com/progressive-image-element@latest/dist/index.js"></script>
+
+  <script type="module">
+    import 'https://cdn.jsdelivr.net/npm/syntax-highlight-element@1.0.0/+esm';
+  </script>
+
+  <script type="module">
+    import 'https://cdn.jsdelivr.net/npm/@github/clipboard-copy-element@1.3.0/+esm';
+
+    document.addEventListener('clipboard-copy', event => {
+      const button = event.target;
+        const icon = button.querySelector('[data-icon] use');
+        const defaultAriaLabel = button.getAttribute('aria-label');
+        button.setAttribute('aria-label', 'Copied!');
+        icon.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#icon-check');
+        setTimeout(() => {
+          button.setAttribute('aria-label', defaultAriaLabel);
+          icon.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#icon-copy');
+        }, 1800);
+    });
+  </script>
 </body>
 </html>
