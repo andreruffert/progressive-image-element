@@ -1,3 +1,13 @@
+# [1.3.0](https://github.com/andreruffert/progressive-image-element/compare/v1.2.0...v1.3.0) (2025-03-25)
+
+
+### Features
+
+* allow opt-out of define() ([f473c68](https://github.com/andreruffert/progressive-image-element/commit/f473c68cc30b3accdb08084f083dafe1077324b2))
+* introduce es module support ([2c345b8](https://github.com/andreruffert/progressive-image-element/commit/2c345b8783e39b84cdb8c7010984e28001097548))
+
+
+
 # 1.2.0 (2020-02-14)
 
 
