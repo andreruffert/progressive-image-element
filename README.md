@@ -32,7 +32,7 @@ $ npm install progressive-image-element
   <link rel="stylesheet" href="https://unpkg.com/progressive-image-element@latest/dist/progressive-image-element.css" />
 
   <!-- Include the custom element script, this could be direct from the package or CDN -->
-  <script src="https://unpkg.com/progressive-image-element@latest/dist/index.js"></script>
+  <script type="module" src="https://unpkg.com/progressive-image-element@latest/dist/progressive-image-element.js"></script>
   ```
 
   or
