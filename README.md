@@ -5,6 +5,7 @@
 [![Test](https://img.shields.io/github/actions/workflow/status/andreruffert/syntax-highlight-element/test.yml?label=Test&logo=github&color=ffc300&labelColor=212121)](https://github.com/andreruffert/progressive-image-element/actions/workflows/test.yml)
 [![npm version](https://img.shields.io/npm/v/progressive-image-element.svg?color=ffc300&labelColor=212121)](https://www.npmjs.com/package/progressive-image-element)
 [![npm downloads](https://img.shields.io/npm/dm/progressive-image-element?logo=npm&color=ffc300&labelColor=212121)](https://www.npmjs.com/package/progressive-image-element)
+[![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/progressive-image-element?color=ffc300&labelColor=212121)](https://www.jsdelivr.com/package/npm/progressive-image-element)
 
 * **Faster page load**: Images are loaded only as they enter the viewport, using native browser lazy loading with placeholders
 * **Visual stability**: Prevent layout shifts when loading images
