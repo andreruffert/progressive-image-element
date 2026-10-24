@@ -95,7 +95,7 @@ class ProgressiveImageElement extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this._observer.disconnect();
+    this._observer?.disconnect();
   }
 }
 
