@@ -28,6 +28,7 @@
     "build": "vite build",
     "format": "biome check --write",
     "lint": "biome ci",
+    "test": "node --test",
     "prepublishOnly": "npm run build",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
